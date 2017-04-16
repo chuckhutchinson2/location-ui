@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AwesomeComponent extends React.Component {
+class LocationComponent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class AwesomeComponent extends React.Component {
   render() {
     return (
       <div>
-        Likes : <span>{this.state.likesCount}</span>
+        Location : <span>{this.state.likesCount}</span>
         <div><button onClick={this.onLike}>Like Me</button></div>
       </div>
     );
@@ -24,5 +24,5 @@ class AwesomeComponent extends React.Component {
 
 }
 
-export default AwesomeComponent;
+export default LocationComponent;
 

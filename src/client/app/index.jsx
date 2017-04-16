@@ -1,11 +1,13 @@
 import React from 'react';
 import {render} from 'react-dom';
-import AwesomeComponent from './AwesomeComponent.jsx';
+import LocationComponent from './LocationComponent.jsx';
+import TimerComponent from './TimerComponent.jsx';
 
 class App extends React.Component {
   render () {
     return <div>
-		<AwesomeComponent />
+		<TimerComponent />
+		<LocationComponent />
 	</div>
 	   
   }
