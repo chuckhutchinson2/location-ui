@@ -1,0 +1,19 @@
+{
+  "name": "location-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chuckhutchinson2/location-ui.git"
+  },
+  "author": "chuck hutchinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chuckhutchinson2/location-ui/issues"
+  },
+  "homepage": "https://github.com/chuckhutchinson2/location-ui#readme"
+}
