@@ -18,5 +18,8 @@
   "homepage": "https://github.com/chuckhutchinson2/location-ui#readme",
   "dependencies": {
     "webpack": "^2.4.1"
+  },
+  "devDependencies": {
+    "html-loader": "^0.4.5"
   }
 }
