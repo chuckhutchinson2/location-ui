@@ -1,35 +1,13 @@
 /* eslint max-len: 0 */
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import RestClient from 'react-native-rest-client';
-
-
-var locationsMock = [{
-      city: "Rockville",
-      county: "Montgomery",
-      zip: 20850,
-      latitude: 39.4249,
-      longitude: 75.8149
-  },{
-      city: "Bethesda",
-      county: "Montgomery",
-      zip: 20850,
-      latitude: 39.4249,
-      longitude: 75.8149
-  },{
-      city: "Gaithersburg",
-      county: "Montgomery",
-      zip: 20850,
-      latitude: 39.4249,
-      longitude: 75.8149
-  }];
-
-
+import LocationApi from './LocationApi';
 
 export default class LocationComponent extends React.Component {
 
   constructor(props) {
     super(props);
+  
     this.state = {locations: []};
     
     this.options = {
@@ -39,9 +17,8 @@ export default class LocationComponent extends React.Component {
   }
   
   componentDidMount() {
-  	const api = new RestClient('http://localhost:8080');
-  	
-  	api.GET('/cities/MD')
+   	 this.api = new LocationApi();
+  	this.api.getCities('VA')
   	  .then(response => this.setState({locations: response})) 
   	  .catch(err => alert('err ' + err.toString()));   
   }
