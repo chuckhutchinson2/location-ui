@@ -5,12 +5,8 @@ import TimerComponent from './TimerComponent.jsx';
 
 class App extends React.Component {
   render () {
-    return <div>
-		<TimerComponent />
-		<LocationComponent />
-	</div>
-	   
+    return (<LocationComponent />)
   }
 }
 
-render(<App/>, document.getElementById('app'));
+render(<App/>, document.getElementById('root'));
