@@ -1,7 +1,7 @@
 {
   "name": "location-ui",
   "version": "1.0.0",
-  "description": "",
+  "description": "user interface for location services",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/chuckhutchinson2/location-ui/issues"
   },
-  "homepage": "https://github.com/chuckhutchinson2/location-ui#readme"
+  "homepage": "https://github.com/chuckhutchinson2/location-ui#readme",
+  "dependencies": {
+    "webpack": "^2.4.1"
+  }
 }
