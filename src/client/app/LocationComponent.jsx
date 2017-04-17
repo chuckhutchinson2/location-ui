@@ -8,23 +8,48 @@ export default class LocationComponent extends React.Component {
   constructor(props) {
     super(props);
   
-    this.state = {locations: []};
-    
+    this.state = {locations: [], enteredState: 'MD'};
+
     this.options = {
       defaultSortName: 'city',  // default sort column name
       defaultSortOrder: 'asc'  // default sort order
     };
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   componentDidMount() {
    	 this.api = new LocationApi();
-  	this.api.getCities('VA')
+  	 this.api.getCities(this.state.enteredState)
   	  .then(response => this.setState({locations: response})) 
   	  .catch(err => alert('err ' + err.toString()));   
   }
 
+  handleChange(event) {
+    this.setState({enteredState: event.target.value});
+  }
+  
+  handleSubmit(event) {
+     this.api = new LocationApi();
+  	 this.api.getCities(this.state.enteredState)
+  	  .then(response => this.setState({locations: response})) 
+  	  .catch(err => alert('err ' + err.toString()));   
+  	  
+    event.preventDefault();
+  }
+  
   render() {
     return (
+    <div>
+    	<form onSubmit={this.handleSubmit}>
+        	<label>
+          		State:
+          		<input type="text" value={this.state.enteredState} onChange={this.handleChange} />
+        	</label>
+        	<input type="submit" value="Submit" />
+      	</form>
+      	
 		<BootstrapTable 
 			data={this.state.locations} 
 			options={ { noDataText: 'No locations available' } } 
@@ -39,6 +64,7 @@ export default class LocationComponent extends React.Component {
 			<TableHeaderColumn dataField='latitude' dataSort>Latitude</TableHeaderColumn>
 			<TableHeaderColumn dataField='longitude' dataSort>Longitude</TableHeaderColumn>	
 		</BootstrapTable>
+	</div>
     );
   }
 
