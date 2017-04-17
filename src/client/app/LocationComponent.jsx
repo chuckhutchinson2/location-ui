@@ -1,7 +1,7 @@
 /* eslint max-len: 0 */
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import LocationApi from './LocationApi';
+import LocationApi from './LocationApi.jsx';
 
 export default class LocationComponent extends React.Component {
 
