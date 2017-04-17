@@ -1,0 +1,1 @@
+docker tag location-ui:latest chuckh/location-ui

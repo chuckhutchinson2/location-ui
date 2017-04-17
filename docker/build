@@ -1,0 +1,8 @@
+# build the docker image
+mkdir -p dist
+mkdir -p dist/public
+cp ../src/client/index.html dist/
+cp ../src/client/public/* dist/public/
+
+docker build -t location-ui .
+# rm -fr dist
