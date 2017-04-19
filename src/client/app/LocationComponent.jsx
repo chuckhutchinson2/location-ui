@@ -8,7 +8,7 @@ export default class LocationComponent extends React.Component {
   constructor(props) {
     super(props);
   
-    this.state = {locations: [], enteredState: 'MD'};
+    this.state = {locations: [], enteredState: props.enteredState};
 
     this.options = {
       defaultSortName: 'city',  // default sort column name

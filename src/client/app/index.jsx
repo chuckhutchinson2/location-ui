@@ -18,15 +18,15 @@ class App extends React.Component {
       		>
 
 			<TabList>
-				<Tab>Location</Tab>
-				<Tab>Location2</Tab>
+				<Tab>Virginia</Tab>
+				<Tab>California</Tab>
 			</TabList>
 			
 			<TabPanel>
-    			<LocationComponent />
+    			<LocationComponent enteredState='VA'/>
     		</TabPanel>
  			<TabPanel>
-    			<LocationComponent />
+    			<LocationComponent enteredState='CA'/>
     		</TabPanel>   				
     	</Tabs>
     	)
