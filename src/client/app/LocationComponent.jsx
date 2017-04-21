@@ -17,6 +17,7 @@ export default class LocationComponent extends React.Component {
     
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.useLocation = this.useLocation.bind(this);
   }
   
   componentDidMount() {
@@ -39,6 +40,16 @@ export default class LocationComponent extends React.Component {
     event.preventDefault();
   }
   
+  useLocation(e) {
+   //e.preventDefault();
+   alert('abc');
+  }
+  
+    
+  hrefIdFormatter(cell, row) {
+    return <a href="#" onClick={this.useLocation}>{row.city}</a>
+  }
+  
   render() {
     return (
     <div>
@@ -58,7 +69,7 @@ export default class LocationComponent extends React.Component {
 			striped 
 			hover  
 			scrollTop={ 'Bottom' }>
-			<TableHeaderColumn isKey dataField='city' dataSort>City</TableHeaderColumn>
+			<TableHeaderColumn isKey dataField='city' dataFormat={this.hrefIdFormatter} dataSort>City</TableHeaderColumn>
 			<TableHeaderColumn dataField='county' dataSort>County</TableHeaderColumn>
 			<TableHeaderColumn dataField='zip' dataSort>Zip Code</TableHeaderColumn>
 			<TableHeaderColumn dataField='latitude' dataSort>Latitude</TableHeaderColumn>
