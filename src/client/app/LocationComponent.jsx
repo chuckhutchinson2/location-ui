@@ -2,6 +2,7 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import LocationApi from './LocationApi.jsx';
+import LocationMapComponent from './LocationMapComponent.jsx';
 
 export default class LocationComponent extends React.Component {
 
@@ -75,6 +76,7 @@ export default class LocationComponent extends React.Component {
 			<TableHeaderColumn dataField='latitude' dataSort>Latitude</TableHeaderColumn>
 			<TableHeaderColumn dataField='longitude' dataSort>Longitude</TableHeaderColumn>	
 		</BootstrapTable>
+		<LocationMapComponent/>
 	</div>
     );
   }

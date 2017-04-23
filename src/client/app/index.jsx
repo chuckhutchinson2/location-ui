@@ -4,7 +4,8 @@ import Center from 'react-center';
 import LocationComponent from './LocationComponent.jsx';
 import TimerComponent from './TimerComponent.jsx';
 import VideoListComponent from './VideoListComponent.jsx';
-
+//    			<VideoListComponent videos={[ "https://www.youtube.com/embed/O2HoQ1fMHts?ecver=1", "https://youtu.be/7QLVMwyxU_Q"]}/>
+ 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class App extends React.Component {
@@ -14,10 +15,7 @@ class App extends React.Component {
   
   render () {
     return (
-    	<Tabs
-        	onSelect={this.handleSelect}
-        	selectedIndex={2}
-      		>
+    	<Tabs onSelect={this.handleSelect}>
 
 			<TabList>
 				<Tab>Virginia</Tab>
@@ -33,7 +31,6 @@ class App extends React.Component {
     			<LocationComponent enteredState='CA'/>
     		</TabPanel>   
   			<TabPanel>
-    			<VideoListComponent videos={[ "https://www.youtube.com/embed/O2HoQ1fMHts?ecver=1", "https://youtu.be/7QLVMwyxU_Q"]}/>
     		</TabPanel> 	
     			
     	</Tabs>
