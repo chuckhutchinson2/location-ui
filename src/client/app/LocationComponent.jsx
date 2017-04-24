@@ -76,7 +76,7 @@ export default class LocationComponent extends React.Component {
 			<TableHeaderColumn dataField='latitude' dataSort>Latitude</TableHeaderColumn>
 			<TableHeaderColumn dataField='longitude' dataSort>Longitude</TableHeaderColumn>	
 		</BootstrapTable>
-		<LocationMapComponent/>
+		<LocationMapComponent center={[38.9072, -77.0369]}/>
 	</div>
     );
   }
