@@ -25,6 +25,9 @@ const Style = {
   padding: 4
 };
 
+
+// https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions
+
 const AnyReactComponent = ({ text }) => <div style={Style}>{text}</div>;
 
 function createMapOptions(maps) {
@@ -52,8 +55,45 @@ export default class LocationMapComponent extends PureComponent {
     super(props);
     
     this.state = {
-    	center: props.center
+    	center: props.center,
+    	map: null
     	};
+    	
+    this.onClick = this.onClick.bind(this);
+    this.onMapLoad = this.onMapLoad.bind(this);
+    this.addLocation = this.addLocation.bind(this);
+  }
+  
+  addLocation(location) {
+  
+  
+  	if (location != null && this.state.map != null) {
+  	
+  		var data = { 
+        				lat: location.latitude, 
+        				lng: -1 * location.longitude,
+        				title: location.city + ", " + location.state
+        				};
+  	
+  		this.state.map.data.loadGeoJson(location);
+//  		this.state.map.addMarker(new google.maps.MarkerOptions()
+//        	.position( { 
+//        				lat: location.latitude, 
+//        				lng: -1 * location.longitude
+//        				})
+//        	.title(location.city + ", " + location.state));
+  	}
+  }
+  
+  onClick(event) {
+
+  }
+  
+  onMapLoad(map) {    
+  	if (map != null) 
+  	{ 
+  		this.state.map = map; 
+  	}
   }
 
   render() {
@@ -61,10 +101,15 @@ export default class LocationMapComponent extends PureComponent {
   		width: '1000px',
   		height: '500px',
 		};
-
+    
+    var that = this;
+    	
     return (
+
     	<div style={style}>
        <GoogleMap
+       		ref={this.onMapLoad}
+       	onClick={this.onClick}
         bootstrapURLKeys={{
 		    key: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
 		    language: 'en'

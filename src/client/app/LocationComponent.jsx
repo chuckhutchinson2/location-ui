@@ -9,7 +9,11 @@ export default class LocationComponent extends React.Component {
   constructor(props) {
     super(props);
   
-    this.state = {locations: [], enteredState: props.enteredState};
+    this.state = {
+    	locations: [], 
+    	enteredState: props.enteredState,
+    	map: null
+    	};
 
     this.options = {
       defaultSortName: 'city',  // default sort column name
@@ -19,6 +23,7 @@ export default class LocationComponent extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.useLocation = this.useLocation.bind(this);
+    this.onMapLoad = this.onMapLoad.bind(this);
   }
   
   componentDidMount() {
@@ -51,6 +56,16 @@ export default class LocationComponent extends React.Component {
     return <a href="#" onClick={this.useLocation}>{row.city}</a>
   }
   
+  onMapLoad(map) {
+  
+  	this.state.map = map;
+  	
+  	if (this.state.map != null) {
+  	
+  		this.state.map.addLocation(this.state.locations[0]);
+  	}
+  }
+  
   render() {
     return (
     <div>
@@ -76,7 +91,7 @@ export default class LocationComponent extends React.Component {
 			<TableHeaderColumn dataField='latitude' dataSort>Latitude</TableHeaderColumn>
 			<TableHeaderColumn dataField='longitude' dataSort>Longitude</TableHeaderColumn>	
 		</BootstrapTable>
-		<LocationMapComponent center={[38.9072, -77.0369]}/>
+		<LocationMapComponent ref={this.onMapLoad} center={[38.9072, -77.0369]}/>
 	</div>
     );
   }
