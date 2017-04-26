@@ -49,6 +49,21 @@ function createMapOptions(maps) {
   };
 }
 
+const ListingMarker = ({locations}) => {
+  return (
+    <div>
+      {locations && locations.map(data => {
+        return (
+        	<div className={'map-marker'}
+         		style={Style}>
+        			<AnyReactComponent lat={data.lat} lng={data.lng}>{data.title}</AnyReactComponent>
+        	</div>
+        )
+      })}
+    </div>
+  )
+}
+
 export default class LocationMapComponent extends PureComponent {
   
   constructor(props) {
@@ -56,44 +71,28 @@ export default class LocationMapComponent extends PureComponent {
     
     this.state = {
     	center: props.center,
-    	map: null
+    	markers: []
     	};
     	
-    this.onClick = this.onClick.bind(this);
-    this.onMapLoad = this.onMapLoad.bind(this);
     this.addLocation = this.addLocation.bind(this);
   }
   
   addLocation(location) {
   
+  	if (location != null) {
   
-  	if (location != null && this.state.map != null) {
-  	
-  		var data = { 
-        				lat: location.latitude, 
-        				lng: -1 * location.longitude,
-        				title: location.city + ", " + location.state
-        				};
-  	
-  		this.state.map.data.loadGeoJson(location);
-//  		this.state.map.addMarker(new google.maps.MarkerOptions()
-//        	.position( { 
-//        				lat: location.latitude, 
-//        				lng: -1 * location.longitude
-//        				})
-//        	.title(location.city + ", " + location.state));
-  	}
+		var data = { 
+					lat: location.latitude, 
+					lng: -1 * location.longitude,
+					title: location.city + ", " + location.state
+				};
+	        				
+		this.state.markers.push(data);
+	}
   }
   
   onClick(event) {
 
-  }
-  
-  onMapLoad(map) {    
-  	if (map != null) 
-  	{ 
-  		this.state.map = map; 
-  	}
   }
 
   render() {
@@ -102,26 +101,20 @@ export default class LocationMapComponent extends PureComponent {
   		height: '500px',
 		};
     
-    var that = this;
-    	
     return (
 
-    	<div style={style}>
-       <GoogleMap
-       		ref={this.onMapLoad}
-       	onClick={this.onClick}
-        bootstrapURLKeys={{
-		    key: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
-		    language: 'en'
-		  }}
-        center={this.state.center}
-        options={createMapOptions}
-        zoom={9}>
-       <AnyReactComponent
-          lat={38.8339}
-          lng={-77.2048}
-          text={'Alexandia'} />
-       </GoogleMap>
+		<div style={style}>
+	       <GoogleMap
+		       	onClick={this.onClick}
+		        bootstrapURLKeys={{
+				    key: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
+				    language: 'en'
+				  }}
+		        center={this.state.center}
+		        options={createMapOptions}
+		        zoom={9}>
+			       <ListingMarker locations={this.state.markers}/>
+	       </GoogleMap>
        </div>
     );
   }
