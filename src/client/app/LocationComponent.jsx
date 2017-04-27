@@ -22,9 +22,9 @@ export default class LocationComponent extends React.Component {
     
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.useLocation = this.useLocation.bind(this);
     this.onMapLoad = this.onMapLoad.bind(this);
     this.stateChanged = this.stateChanged.bind(this);
+    this.hrefIdFormatter = this.hrefIdFormatter.bind(this);
   }
   
   componentDidMount() {
@@ -40,8 +40,7 @@ export default class LocationComponent extends React.Component {
   
   stateChanged(response) {
   	this.setState({locations: response});
-  	//alert(JSON.stringify(this.state.locations[0]));
-  	this.state.map.addLocation(this.state.locations[0]);
+  	this.state.map.clear();
   }
   
   
@@ -54,14 +53,8 @@ export default class LocationComponent extends React.Component {
     event.preventDefault();
   }
   
-  useLocation(e) {
-   //e.preventDefault();
-   alert('abc');
-  }
-  
-    
   hrefIdFormatter(cell, row) {
-    return <a href="#" onClick={(r) => this.useLocation}>{row.city}</a>
+    return <a onClick={(r) => this.state.map.addLocation(row)}>{row.city}</a>
   }
   
   onMapLoad(map) {

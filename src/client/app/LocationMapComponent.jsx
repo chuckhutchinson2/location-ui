@@ -61,17 +61,28 @@ export default class LocationMapComponent extends Component {
     this.addLocation = this.addLocation.bind(this);
   }
   
+  clear() {
+  	this.setState({ markers: []});
+  }
+  
   addLocation(location) {
   
   	if (location != null) {
-  
+  	
+  //  	alert(JSON.stringify(location));
+  	
 		var data = { 
 					lat: location.latitude, 
 					lng: -1 * location.longitude,
 					title: location.city + ", " + location.state
 				};
+				
+				
+		var markers = this.state.markers;
 	        				
-		this.state.markers.push(data);
+		markers.push(data);
+		
+		this.setState({markers: markers});
 	}
   }
   
