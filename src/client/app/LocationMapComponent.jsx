@@ -56,7 +56,7 @@ export default class LocationMapComponent extends Component {
     this.state = {
     	center: props.center,
     	markers: []
-    	};
+	    };
     	
     this.addLocation = this.addLocation.bind(this);
   }
@@ -69,13 +69,11 @@ export default class LocationMapComponent extends Component {
   
   	if (location != null) {
   	
-  //  	alert(JSON.stringify(location));
-  	
 		var data = { 
 					lat: location.latitude, 
 					lng: -1 * location.longitude,
 					title: location.city + ", " + location.state
-				};
+					}
 				
 				
 		var markers = this.state.markers;
@@ -91,13 +89,17 @@ export default class LocationMapComponent extends Component {
   }
 
   render() {
+  
   	var style = {
-  		width: '1000px',
-  		height: '500px',
-  		overflow: 'scroll'
-		};
-		
-		
+	  		width: '1000px',
+	  		height: '500px',
+	  		overflow: 'scroll'
+	};
+	
+	if (this.props.style != null) {
+		style = this.props.style;
+	}
+
 	const MarkerList = this.state.markers && this.state.markers.map((data, index) => (
 	     <ListingMarker  
 	     	key={index} 
@@ -107,7 +109,7 @@ export default class LocationMapComponent extends Component {
     
     return (
 
-		<div style={style}>
+		<div style={this.props.style}>
 	       <GoogleMap
 		       	onClick={this.onClick}
 		        bootstrapURLKeys={{

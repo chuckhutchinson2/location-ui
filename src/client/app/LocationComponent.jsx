@@ -1,6 +1,7 @@
 /* eslint max-len: 0 */
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import SplitPane from 'react-split-pane';
 
 import LocationApi from './LocationApi.jsx';
 import LocationMapComponent from './LocationMapComponent.jsx';
@@ -69,12 +70,13 @@ export default class LocationComponent extends React.Component {
    
    var tableStyle = {
 		padding: '10px',
-		width: '50%'
     };
     
    var mapStyle = {
    		padding: '10px',
-    	width: 'auto'
+  		width: '400px',
+  		height: '400px',
+  		overflow: 'scroll'
     };
       
     return (
@@ -88,27 +90,28 @@ export default class LocationComponent extends React.Component {
         	<input type="submit" value="Submit" />
       	</form>
       	
-		<table style={style}> 
-				<tr>
-					<td  style={tableStyle}>
-						<BootstrapTable
-							data={this.state.locations} 
-							options={ { noDataText: 'No locations available' } } 
-							options={ this.options }
-							pagination
-							striped 
-							hover  
-							scrollTop={ 'Bottom' }>
-							<TableHeaderColumn isKey dataField='city' dataFormat={this.hrefIdFormatter} dataSort>City</TableHeaderColumn>
-							<TableHeaderColumn dataField='county' dataSort>County</TableHeaderColumn>
-							<TableHeaderColumn dataField='zip' dataSort>Zip Code</TableHeaderColumn>
-						</BootstrapTable>
-					</td>
-					<td style={mapStyle}>
-						<LocationMapComponent ref={this.onMapLoad} center={[38.9072, -77.0369]}/>
-					</td>
-				</tr>
-		</table>
+		<SplitPane split="vertical" minSize={400} maxSize={400} defaultSize={400} className="primary">
+			<div>
+				<BootstrapTable
+					data={this.state.locations} 
+					options={ { noDataText: 'No locations available' } } 
+					options={ this.options }
+					pagination
+					striped 
+					hover  
+					scrollTop={ 'Bottom' }>
+					<TableHeaderColumn isKey dataField='city' dataFormat={this.hrefIdFormatter} dataSort>City</TableHeaderColumn>
+					<TableHeaderColumn dataField='county' dataSort>County</TableHeaderColumn>
+					<TableHeaderColumn dataField='zip' dataSort>Zip Code</TableHeaderColumn>
+				</BootstrapTable>
+			</div>
+			<div>
+				<LocationMapComponent 
+					style={mapStyle}
+					ref={this.onMapLoad} 
+					center={[38.9072, -77.0369]}/>
+			</div>
+		</SplitPane>
 	</div>
     );
   }
