@@ -1,6 +1,5 @@
 /* eslint max-len: 0 */
 import React, {Component} from 'react';
-import PureComponent from 'react-pure-render-utils/component';
 import GoogleMap from 'google-map-react';
 
 const K_WIDTH = 40;
@@ -49,22 +48,7 @@ function createMapOptions(maps) {
   };
 }
 
-const ListingMarker = ({locations}) => {
-  return (
-    <div>
-      {locations && locations.map(data => {
-        return (
-        	<div className={'map-marker'}
-         		style={Style}>
-        			<AnyReactComponent lat={data.lat} lng={data.lng}>{data.title}</AnyReactComponent>
-        	</div>
-        )
-      })}
-    </div>
-  )
-}
-
-export default class LocationMapComponent extends PureComponent {
+export default class LocationMapComponent extends Component {
   
   constructor(props) {
     super(props);
@@ -100,6 +84,15 @@ export default class LocationMapComponent extends PureComponent {
   		width: '1000px',
   		height: '500px',
 		};
+		
+		
+	const ListingMarker = this.state.markers && this.state.markers.map((data, index) => (
+	     <AnyReactComponent  
+	     	key={index} 
+	     	lat={data.lat} 
+	     	lng={data.lng}>{data.title}
+	     </AnyReactComponent>
+	));
     
     return (
 
@@ -113,7 +106,7 @@ export default class LocationMapComponent extends PureComponent {
 		        center={this.state.center}
 		        options={createMapOptions}
 		        zoom={9}>
-			       <ListingMarker locations={this.state.markers}/>
+			       {ListingMarker}
 	       </GoogleMap>
        </div>
     );
