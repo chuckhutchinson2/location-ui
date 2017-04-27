@@ -2,8 +2,8 @@
 import React, {Component} from 'react';
 import GoogleMap from 'google-map-react';
 
-const K_WIDTH = 40;
-const K_HEIGHT = 40;
+const K_WIDTH = 5;
+const K_HEIGHT = 5;
 
 const Style = {
   // initially any map object has left top corner at lat lng coordinates
@@ -27,7 +27,7 @@ const Style = {
 
 // https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions
 
-const AnyReactComponent = ({ text }) => <div style={Style}>{text}</div>;
+const ListingMarker = ({ text }) => <div style={Style}>{text}</div>;
 
 function createMapOptions(maps) {
   // next props are exposed at maps
@@ -94,15 +94,15 @@ export default class LocationMapComponent extends Component {
   	var style = {
   		width: '1000px',
   		height: '500px',
+  		overflow: 'scroll'
 		};
 		
 		
-	const ListingMarker = this.state.markers && this.state.markers.map((data, index) => (
-	     <AnyReactComponent  
+	const MarkerList = this.state.markers && this.state.markers.map((data, index) => (
+	     <ListingMarker  
 	     	key={index} 
 	     	lat={data.lat} 
-	     	lng={data.lng}>{data.title}
-	     </AnyReactComponent>
+	     	lng={data.lng} text={data.title}/>
 	));
     
     return (
@@ -117,7 +117,7 @@ export default class LocationMapComponent extends Component {
 		        center={this.state.center}
 		        options={createMapOptions}
 		        zoom={9}>
-			       {ListingMarker}
+			       {MarkerList}
 	       </GoogleMap>
        </div>
     );

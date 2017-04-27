@@ -1,6 +1,7 @@
 /* eslint max-len: 0 */
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+
 import LocationApi from './LocationApi.jsx';
 import LocationMapComponent from './LocationMapComponent.jsx';
 
@@ -62,7 +63,22 @@ export default class LocationComponent extends React.Component {
   }
   
   render() {
+    var style = {
+		width: '100%'
+    };
+   
+   var tableStyle = {
+		padding: '10px',
+		width: '50%'
+    };
+    
+   var mapStyle = {
+   		padding: '10px',
+    	width: 'auto'
+    };
+      
     return (
+   
     <div>
     	<form onSubmit={this.handleSubmit}>
         	<label>
@@ -72,21 +88,27 @@ export default class LocationComponent extends React.Component {
         	<input type="submit" value="Submit" />
       	</form>
       	
-		<BootstrapTable 
-			data={this.state.locations} 
-			options={ { noDataText: 'No locations available' } } 
-			options={ this.options }
-			pagination
-			striped 
-			hover  
-			scrollTop={ 'Bottom' }>
-			<TableHeaderColumn isKey dataField='city' dataFormat={this.hrefIdFormatter} dataSort>City</TableHeaderColumn>
-			<TableHeaderColumn dataField='county' dataSort>County</TableHeaderColumn>
-			<TableHeaderColumn dataField='zip' dataSort>Zip Code</TableHeaderColumn>
-			<TableHeaderColumn dataField='latitude' dataSort>Latitude</TableHeaderColumn>
-			<TableHeaderColumn dataField='longitude' dataSort>Longitude</TableHeaderColumn>	
-		</BootstrapTable>
-		<LocationMapComponent ref={this.onMapLoad} center={[38.9072, -77.0369]}/>
+		<table style={style}> 
+				<tr>
+					<td  style={tableStyle}>
+						<BootstrapTable
+							data={this.state.locations} 
+							options={ { noDataText: 'No locations available' } } 
+							options={ this.options }
+							pagination
+							striped 
+							hover  
+							scrollTop={ 'Bottom' }>
+							<TableHeaderColumn isKey dataField='city' dataFormat={this.hrefIdFormatter} dataSort>City</TableHeaderColumn>
+							<TableHeaderColumn dataField='county' dataSort>County</TableHeaderColumn>
+							<TableHeaderColumn dataField='zip' dataSort>Zip Code</TableHeaderColumn>
+						</BootstrapTable>
+					</td>
+					<td style={mapStyle}>
+						<LocationMapComponent ref={this.onMapLoad} center={[38.9072, -77.0369]}/>
+					</td>
+				</tr>
+		</table>
 	</div>
     );
   }
