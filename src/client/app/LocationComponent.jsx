@@ -14,6 +14,7 @@ export default class LocationComponent extends React.Component {
     this.state = {
     	locations: [], 
     	enteredState: props.enteredState,
+    	center: [38.9072, -77.0369],
     	map: null
     	};
 
@@ -41,8 +42,9 @@ export default class LocationComponent extends React.Component {
   }
   
   stateChanged(response) {
-  	this.setState({locations: response});
   	this.state.map.clear();
+  	
+  	this.setState({locations: response});
   }
   
   
@@ -109,7 +111,7 @@ export default class LocationComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
-					center={[38.9072, -77.0369]}/>
+					center={this.state.center}/>
 			</div>
 		</SplitPane>
 	</div>

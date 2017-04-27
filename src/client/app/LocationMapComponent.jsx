@@ -84,6 +84,13 @@ export default class LocationMapComponent extends Component {
 	}
   }
   
+  center(location) {
+  	alert(JSON.stringify(location));
+  	this.setState({center: { 
+					lat: location.latitude, 
+					lng: -1 * location.longitude}});
+	}
+  
   onClick(event) {
 
   }
@@ -104,7 +111,15 @@ export default class LocationMapComponent extends Component {
 	     <ListingMarker  
 	     	key={index} 
 	     	lat={data.lat} 
-	     	lng={data.lng} text={data.title}/>
+	     	lng={data.lng} text={data.title}>
+	     	
+	     	      <div className="hint hint--html hint--info hint--top">
+          <div>{data.text}</div>
+          <div style={{width: 80}} className="hint__content">
+          Сlick me
+          </div>
+       </div>
+       </ListingMarker>
 	));
     
     return (
