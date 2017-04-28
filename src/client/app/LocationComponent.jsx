@@ -27,7 +27,7 @@ export default class LocationComponent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onMapLoad = this.onMapLoad.bind(this);
     this.stateChanged = this.stateChanged.bind(this);
-    this.hrefIdFormatter = this.hrefIdFormatter.bind(this);
+    this.handleRowSelect = this.handleRowSelect.bind(this);
   }
   
   componentDidMount() {
@@ -57,8 +57,8 @@ export default class LocationComponent extends React.Component {
     event.preventDefault();
   }
   
-  hrefIdFormatter(cell, row) {
-    return <a onClick={(r) => this.state.map.addLocation(row)}>{row.city}</a>
+  handleRowSelect(row, isSelected, e) {
+  	this.state.map.addLocation(row);
   }
   
   onMapLoad(map) {
@@ -80,9 +80,14 @@ export default class LocationComponent extends React.Component {
   		height: '400px',
   		overflow: 'scroll'
     };
-      
+    
+    const selectRow = {
+    	mode: 'checkbox',  // multi select
+    	onSelect: this.handleRowSelect
+  	};    
+  	
     return (
-   
+    
     <div>
     	<form onSubmit={this.handleSubmit}>
         	<label>
@@ -97,14 +102,15 @@ export default class LocationComponent extends React.Component {
 				<BootstrapTable
 					data={this.state.locations} 
 					options={ { noDataText: 'No locations available' } } 
-					options={ this.options }
 					pagination
 					striped 
 					hover  
-					scrollTop={ 'Bottom' }>
-					<TableHeaderColumn isKey dataField='city' dataFormat={this.hrefIdFormatter} dataSort>City</TableHeaderColumn>
-					<TableHeaderColumn dataField='county' dataSort>County</TableHeaderColumn>
-					<TableHeaderColumn dataField='zip' dataSort>Zip Code</TableHeaderColumn>
+					exportCSV
+					selectRow={ selectRow }
+					>
+					<TableHeaderColumn isKey dataField='city' dataSort filter={ { type: 'TextFilter' } }>City</TableHeaderColumn>
+					<TableHeaderColumn dataField='county' dataSort filter={ { type: 'TextFilter' } }>County</TableHeaderColumn>
+					<TableHeaderColumn dataField='zip' dataSort filter={ { type: 'TextFilter' } }>Zip Code</TableHeaderColumn>
 				</BootstrapTable>
 			</div>
 			<div>
