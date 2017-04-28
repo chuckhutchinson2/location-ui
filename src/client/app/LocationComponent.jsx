@@ -108,9 +108,11 @@ export default class LocationComponent extends React.Component {
 					exportCSV
 					selectRow={ selectRow }
 					>
-					<TableHeaderColumn isKey dataField='city' dataSort filter={ { type: 'TextFilter' } }>City</TableHeaderColumn>
+					<TableHeaderColumn dataField='city' dataSort filter={ { type: 'TextFilter' } }>City</TableHeaderColumn>
 					<TableHeaderColumn dataField='county' dataSort filter={ { type: 'TextFilter' } }>County</TableHeaderColumn>
 					<TableHeaderColumn dataField='zip' dataSort filter={ { type: 'TextFilter' } }>Zip Code</TableHeaderColumn>
+					<TableHeaderColumn isKey dataField='latitude' hidden export>Latitude</TableHeaderColumn>
+					<TableHeaderColumn dataField='longitude' hidden export>Longitude</TableHeaderColumn>	
 				</BootstrapTable>
 			</div>
 			<div>
