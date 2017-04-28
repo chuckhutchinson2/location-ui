@@ -1,8 +1,8 @@
 /* eslint max-len: 0 */
 import React from 'react';
 
-const K_WIDTH = 5;
-const K_HEIGHT = 5;
+const K_WIDTH = 200;
+const K_HEIGHT = 30;
 
 const Style = {
   // initially any map object has left top corner at lat lng coordinates
@@ -12,16 +12,17 @@ const Style = {
   height: K_HEIGHT,
   left: -K_WIDTH / 2,
   top: -K_HEIGHT / 2,
-
-  border: '5px solid #f44336',
-  borderRadius: K_HEIGHT,
-  backgroundColor: 'white',
-  textAlign: 'center',
+  backgroundImage: 'url(app/pin.png)',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'contain',
+  backgroundColor: 'transparent',
+  textAlign: 'bottom',
   color: '#3f51b5',
-  fontSize: 16,
+  fontSize: 12,
   fontWeight: 'bold',
-  padding: 4
+  padding: 18
 };
+
 
 export default class LocationMarker extends React.Component {
 

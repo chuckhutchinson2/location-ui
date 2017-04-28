@@ -71,8 +71,8 @@ export default class LocationComponent extends React.Component {
     };
    
    var formStyle = {
-		'padding-left': '10px',
-		'padding-bottom': '0px'
+		paddingLeft: '10px',
+		paddingBottom: '0px'
     };
     
    var mapStyle = {
