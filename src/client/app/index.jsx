@@ -15,25 +15,28 @@ class App extends React.Component {
   
   render () {
     return (
-    	<Tabs onSelect={this.handleSelect}>
-
-			<TabList>
-				<Tab>Virginia</Tab>
-				<Tab>California</Tab>
-				<Tab>Videos</Tab>
+    	<div>
+	    	<TimerComponent/>
+	    	<Tabs onSelect={this.handleSelect}>
+	
+				<TabList>
+					<Tab>Virginia</Tab>
+					<Tab>California</Tab>
+					<Tab>Videos</Tab>
+					
+				</TabList>
 				
-			</TabList>
-			
-			<TabPanel>
-    			<LocationComponent enteredState='VA'/>
-    		</TabPanel>
- 			<TabPanel>
-    			<LocationComponent enteredState='CA'/>
-    		</TabPanel>   
-  			<TabPanel>
-    		</TabPanel> 	
-    			
-    	</Tabs>
+				<TabPanel>
+	    			<LocationComponent enteredState='VA'/>
+	    		</TabPanel>
+	 			<TabPanel>
+	    			<LocationComponent enteredState='CA'/>
+	    		</TabPanel>   
+	  			<TabPanel>
+	    		</TabPanel> 	
+	    			
+	    	</Tabs>
+    	</div>
     	)
   }
 }

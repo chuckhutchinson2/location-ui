@@ -70,8 +70,9 @@ export default class LocationComponent extends React.Component {
 		width: '100%'
     };
    
-   var tableStyle = {
-		padding: '10px',
+   var formStyle = {
+		'padding-left': '10px',
+		'padding-bottom': '0px'
     };
     
    var mapStyle = {
@@ -80,7 +81,7 @@ export default class LocationComponent extends React.Component {
   		height: '400px',
   		overflow: 'scroll'
     };
-    
+
     const selectRow = {
     	mode: 'checkbox',  // multi select
     	onSelect: this.handleRowSelect
@@ -89,7 +90,7 @@ export default class LocationComponent extends React.Component {
     return (
     
     <div>
-    	<form onSubmit={this.handleSubmit}>
+    	<form onSubmit={this.handleSubmit} style={formStyle}>
         	<label>
           		State:
           		<input type="text" value={this.state.enteredState} onChange={this.handleChange} />
