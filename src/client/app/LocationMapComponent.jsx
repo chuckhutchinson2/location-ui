@@ -32,14 +32,14 @@ export default class LocationMapComponent extends Component {
     	markers: []
 	    };
     	
-    this.addLocation = this.addLocation.bind(this);
+    this.toggleLocation = this.toggleLocation.bind(this);
   }
   
   clear() {
   	this.setState({ markers: []});
   }
   
-  addLocation(location) {
+  toggleLocation(location) {
   
   	if (location != null) {
   	
@@ -51,10 +51,27 @@ export default class LocationMapComponent extends Component {
 				
 				
 		var markers = this.state.markers;
-	        				
-		markers.push(data);
 		
-		this.setState({markers: markers});
+		var newMarkers = [];
+		
+		var found = false;
+		for (var i = 0; i < markers.length; i++)
+		{
+			var marker = markers[i];
+		
+			if ((marker.lat == data.lat) && (marker.lng == data.lng) && (marker.title == data.title)) {
+				found = true;
+				continue;
+			}
+			
+			newMarkers.push(marker);
+		}
+	        				
+	    if (found == false) {
+			newMarkers.push(data);
+		}
+		
+		this.setState({markers: newMarkers});
 	}
   }
   

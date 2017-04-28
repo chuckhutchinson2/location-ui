@@ -58,7 +58,7 @@ export default class LocationComponent extends React.Component {
   }
   
   handleRowSelect(row, isSelected, e) {
-  	this.state.map.addLocation(row);
+  	this.state.map.toggleLocation(row);
   }
   
   onMapLoad(map) {
