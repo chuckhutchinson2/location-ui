@@ -120,6 +120,7 @@ export default class LocationComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
+					zoom={8}
 					center={this.state.center}/>
 			</div>
 		</SplitPane>

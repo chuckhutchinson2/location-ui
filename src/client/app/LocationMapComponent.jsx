@@ -29,6 +29,7 @@ export default class LocationMapComponent extends Component {
     
     this.state = {
     	center: props.center,
+    	zoom: props.zoom,
     	markers: []
 	    };
     	
@@ -109,7 +110,7 @@ export default class LocationMapComponent extends Component {
 				  }}
 		        center={this.state.center}
 		        options={createMapOptions}
-		        zoom={9}>
+		        zoom={this.state.zoom}>
 			       {MarkerList}
 	       </GoogleMap>
        </div>

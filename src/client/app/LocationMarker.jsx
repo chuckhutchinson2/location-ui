@@ -32,10 +32,23 @@ export default class LocationMarker extends React.Component {
     	text: props.text
 	};
 
+
+	this.onClick = this.onClick.bind(this);
   }
+  
+  
+  onClick(event) {
+  	alert(this.state.text);
+  }
+  
   render() {
     return (
-          <div style={Style}>{this.state.text}</div>
+          <div 
+          		style={Style}
+          		onClick={this.onClick}
+          		>
+          		{this.state.text}
+          </div>
     );
   }
  }
