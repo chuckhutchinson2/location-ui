@@ -1,33 +1,7 @@
 /* eslint max-len: 0 */
 import React, {Component} from 'react';
 import GoogleMap from 'google-map-react';
-
-const K_WIDTH = 5;
-const K_HEIGHT = 5;
-
-const Style = {
-  // initially any map object has left top corner at lat lng coordinates
-  // it's on you to set object origin to 0,0 coordinates
-  position: 'absolute',
-  width: K_WIDTH,
-  height: K_HEIGHT,
-  left: -K_WIDTH / 2,
-  top: -K_HEIGHT / 2,
-
-  border: '5px solid #f44336',
-  borderRadius: K_HEIGHT,
-  backgroundColor: 'white',
-  textAlign: 'center',
-  color: '#3f51b5',
-  fontSize: 16,
-  fontWeight: 'bold',
-  padding: 4
-};
-
-
-// https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions
-
-const ListingMarker = ({ text }) => <div style={Style}>{text}</div>;
+import LocationMarker from './LocationMarker.jsx';
 
 function createMapOptions(maps) {
   // next props are exposed at maps
@@ -84,14 +58,7 @@ export default class LocationMapComponent extends Component {
 	}
   }
   
-  center(location) {
-  	alert(JSON.stringify(location));
-  	this.setState({center: { 
-					lat: location.latitude, 
-					lng: -1 * location.longitude}});
-	}
-  
-  onClick(event) {
+  onMapClick(event) {
 
   }
 
@@ -108,25 +75,17 @@ export default class LocationMapComponent extends Component {
 	}
 
 	const MarkerList = this.state.markers && this.state.markers.map((data, index) => (
-	     <ListingMarker  
+	     <LocationMarker  
 	     	key={index} 
 	     	lat={data.lat} 
-	     	lng={data.lng} text={data.title}>
-	     	
-	     	      <div className="hint hint--html hint--info hint--top">
-          <div>{data.text}</div>
-          <div style={{width: 80}} className="hint__content">
-          Сlick me
-          </div>
-       </div>
-       </ListingMarker>
+	     	lng={data.lng} text={data.title}/>
 	));
     
     return (
 
 		<div style={this.props.style}>
 	       <GoogleMap
-		       	onClick={this.onClick}
+		       	onClick={this.onMapClick}
 		        bootstrapURLKeys={{
 				    key: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
 				    language: 'en'
