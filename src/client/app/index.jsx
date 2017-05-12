@@ -5,9 +5,28 @@ import LocationComponent from './LocationComponent.jsx';
 import TimerComponent from './TimerComponent.jsx';
 import WhereAmIComponent from './WhereAmIComponent.jsx';
 import VideoListComponent from './VideoListComponent.jsx';
+import MyIPComponent from './MyIPComponent.jsx';
 //    			<VideoListComponent videos={[ "https://www.youtube.com/embed/O2HoQ1fMHts?ecver=1", "https://youtu.be/7QLVMwyxU_Q"]}/>
  
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+import styler from 'react-styling'
+
+const style = styler
+`
+	divContainer:
+		margin: 5px
+		padding-bottom: 15px
+	
+	divLeft:
+		float: left
+	
+	divRight:
+		float: right
+		
+	tab:
+		margin: 5px
+`
 
 class App extends React.Component {
   handleSelect(index, last) {
@@ -17,8 +36,15 @@ class App extends React.Component {
   render () {
     return (
     	<div>
-	    	<TimerComponent/>
-	    	<Tabs onSelect={this.handleSelect}>
+	    	<div style={style.divContainer}>
+	    		<div style={style.divLeft}>
+	    			<TimerComponent/>
+	    		</div>
+	   			<div style={style.divRight}> 		
+		    		<MyIPComponent/>
+				</div>
+			</div>
+	    	<Tabs style={style.tab} onSelect={this.handleSelect}>
 	
 				<TabList>
 					<Tab>Virginia</Tab>
