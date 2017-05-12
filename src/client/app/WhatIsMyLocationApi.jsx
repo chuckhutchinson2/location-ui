@@ -1,14 +1,14 @@
 /* eslint max-len: 0 */
-import RestClient from 'react-native-rest-client';
+import fetchJsonp from 'fetch-jsonp';
 
 export default class WhatIsMyLocationApi {
 	
   constructor() {
-  	this.api = new RestClient('https://freegeoip.net');
-  }
+   }
   
-  getLocation(ip) {
-	  return this.api.GET('/json/' + ip)
-	  .then(response => response);
+  getLocation() {
+	  return fetchJsonp('https://freegeoip.net/json').then( response => response.json()).catch(function(ex) {
+	    console.log('parsing failed', ex)
+	  });
   }
 }

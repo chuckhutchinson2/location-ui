@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import Center from 'react-center';
 import LocationComponent from './LocationComponent.jsx';
 import TimerComponent from './TimerComponent.jsx';
+import WhereAmIComponent from './WhereAmIComponent.jsx';
 import VideoListComponent from './VideoListComponent.jsx';
 //    			<VideoListComponent videos={[ "https://www.youtube.com/embed/O2HoQ1fMHts?ecver=1", "https://youtu.be/7QLVMwyxU_Q"]}/>
  
@@ -22,7 +23,7 @@ class App extends React.Component {
 				<TabList>
 					<Tab>Virginia</Tab>
 					<Tab>California</Tab>
-					<Tab>Videos</Tab>
+					<Tab>Where Ami</Tab>
 					
 				</TabList>
 				
@@ -33,6 +34,7 @@ class App extends React.Component {
 	    			<LocationComponent enteredState='CA'/>
 	    		</TabPanel>   
 	  			<TabPanel>
+	  				<WhereAmIComponent/>
 	    		</TabPanel> 	
 	    			
 	    	</Tabs>
