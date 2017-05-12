@@ -1,11 +1,24 @@
 /* eslint max-len: 0 */
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import SplitPane from 'react-split-pane';
 
 import LocationApi from './LocationApi.jsx';
 import LocationMapComponent from './LocationMapComponent.jsx';
+import styler from 'react-styling'
 
+const style = styler
+`
+	divContainer:
+		margin: 5px
+		padding-bottom: 15px
+	
+	divLeft:
+		float: left
+		width: 400px
+	
+	divRight:
+		float: right		
+`
 export default class LocationComponent extends React.Component {
 
   constructor(props) {
@@ -66,9 +79,7 @@ export default class LocationComponent extends React.Component {
   }
   
   render() {
-    var style = {
-		width: '100%'
-    };
+
    
    var formStyle = {
 		paddingLeft: '10px',
@@ -88,18 +99,17 @@ export default class LocationComponent extends React.Component {
   	};    
   	
     return (
-    
-    <div>
-    	<form onSubmit={this.handleSubmit} style={formStyle}>
-        	<label>
-          		State:
-          		<input type="text" value={this.state.enteredState} onChange={this.handleChange} />
-        	</label>
-        	<input type="submit" value="Submit" />
-      	</form>
-      	
-		<SplitPane split="vertical" minSize={400} maxSize={400} defaultSize={400} className="primary">
-			<div>
+
+		<div style={style.divContainer}>
+			
+			<div style={style.divLeft}>
+				 <form onSubmit={this.handleSubmit} style={formStyle}>
+		        	<label>
+		          		State:
+		          		<input type="text" value={this.state.enteredState} onChange={this.handleChange} />
+		        	</label>
+		        	<input type="submit" value="Submit" />
+		      	</form>
 				<BootstrapTable
 					data={this.state.locations} 
 					options={ { noDataText: 'No locations available' } } 
@@ -117,15 +127,15 @@ export default class LocationComponent extends React.Component {
 					<TableHeaderColumn dataField='longitude' hidden export>Longitude</TableHeaderColumn>	
 				</BootstrapTable>
 			</div>
-			<div>
+			<div style={style.divRight}>
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
 					zoom={8}
 					center={this.state.center}/>
 			</div>
-		</SplitPane>
-	</div>
+		</div>
+
     );
   }
 
