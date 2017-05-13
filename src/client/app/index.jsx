@@ -50,17 +50,13 @@ class App extends React.Component {
 	    	<Tabs style={style.tab} onSelect={this.handleSelect}>
 	
 				<TabList>
-					<Tab>Virginia</Tab>
-					<Tab>California</Tab>
+					<Tab>State</Tab>
 					<Tab>Where Ami</Tab>
 					<Tab>Ip Info</Tab>					
 				</TabList>
 				
 				<TabPanel>
-	    			<LocationComponent enteredState='VA'/>
-	    		</TabPanel>
-	 			<TabPanel>
-	    			<LocationComponent enteredState='CA'/>
+	    			<LocationComponent enteredState='MD'/>
 	    		</TabPanel>   
 	  			<TabPanel>
 	  				<WhereAmIComponent/>

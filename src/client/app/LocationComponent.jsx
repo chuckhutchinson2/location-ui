@@ -44,6 +44,7 @@ export default class LocationComponent extends React.Component {
     this.statesLoaded = this.statesLoaded.bind(this);
     this.handleRowSelect = this.handleRowSelect.bind(this);
     this.selectedState = this.selectedState.bind(this);
+    this.processStateSelected = this.processStateSelected.bind(this);
   }
   
   
@@ -66,6 +67,22 @@ export default class LocationComponent extends React.Component {
   	this.setState({ states: stateList});
   }
   
+  processStateSelected(response) {
+  
+  	var location = {
+  					latitude: Number(response[0].latitude),
+  					longitude: Number(response[0].longitude)
+  				};
+  
+  	// alert(JSON.stringify(location));
+  
+  	this.setState({
+  		locations: response,
+  		center: [location.latitude, -1 * location.longitude]
+  		});  	
+  		
+  	this.state.map.center([location.latitude, -1 *  location.longitude]);
+  }
   
   componentDidMount() {
    	 this.api = new LocationApi();
@@ -74,17 +91,16 @@ export default class LocationComponent extends React.Component {
    	 	.catch(err => alert('err ' + err.toString()));   
    	 	
   	 this.api.getCities(this.state.enteredState)
-  	  .then(response => this.setState({locations: response})) 
+  	  .then(response => this.processStateSelected(response)) 
   	  .catch(err => alert('err ' + err.toString()));   
   }
-  
   
   selectedState(val) {
   	this.setState({enteredState: val.value});
    
    	this.api = new LocationApi(); 	
   	this.api.getCities(val.value)
-  	  .then(response => this.setState({locations: response})) 
+  	  .then(response => this.processStateSelected(response)) 
   	  .catch(err => alert('err ' + err.toString()));   	
   }
   
@@ -101,9 +117,6 @@ export default class LocationComponent extends React.Component {
   
   onMapLoad(map) {
     this.setState({map: map});
-  }
-  
-  onSelectChange(o) {
   }
   
   render() {
@@ -131,17 +144,16 @@ export default class LocationComponent extends React.Component {
 		<div style={style.divContainer}>
 			
 			<div style={style.divLeft}>
-			
 
-				 	<label>
-				 		Select State:
-						<Select
-						  name="form-field-name"
-						  value={this.state.enteredState}
-						  options={this.state.states}
-						  onChange={this.selectedState}
-						/>
-					</label>
+			 	<label>
+			 		Select State:
+					<Select
+					  name="form-field-name"
+					  value={this.state.enteredState}
+					  options={this.state.states}
+					  onChange={this.selectedState}
+					/>
+				</label>
 
 				<BootstrapTable
 					data={this.state.locations} 
@@ -164,7 +176,7 @@ export default class LocationComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
-					zoom={12}
+					zoom={9}
 					center={this.state.center}/>
 			</div>
 		</div>
