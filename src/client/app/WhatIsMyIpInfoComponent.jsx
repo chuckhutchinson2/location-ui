@@ -50,8 +50,23 @@ export default class WhatIsMyIpInfoComponent extends React.Component {
   getIpInfo(ipInfo) {
   
   	this.setState({ ipInfo: ipInfo});
+  	
+  	var location = ipInfo.loc.split(",");
 
-   	alert(JSON.stringify(ipInfo));
+  	this.state.map.toggleLocation ({
+  		latitude: location[0], 
+  		longitude: -1 * location[1],
+  		city: ipInfo.city,
+  		state: ipInfo.region
+  	});
+  	
+  	this.setState({
+  			location: location,
+  			center: [location[0], -1 * location[1]]
+  			});
+  			
+  	this.state.map.center([location[0],  location[1]]);
+   	// alert(JSON.stringify(ipInfo));
   }
   
   componentDidMount() {
