@@ -6,6 +6,8 @@ import TimerComponent from './TimerComponent.jsx';
 import WhereAmIComponent from './WhereAmIComponent.jsx';
 import VideoListComponent from './VideoListComponent.jsx';
 import MyIPComponent from './MyIPComponent.jsx';
+import WhatIsMyIpInfoComponent from './WhatIsMyIpInfoComponent.jsx';
+
 //    			<VideoListComponent videos={[ "https://www.youtube.com/embed/O2HoQ1fMHts?ecver=1", "https://youtu.be/7QLVMwyxU_Q"]}/>
  
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -50,7 +52,7 @@ class App extends React.Component {
 					<Tab>Virginia</Tab>
 					<Tab>California</Tab>
 					<Tab>Where Ami</Tab>
-					
+					<Tab>Ip Info</Tab>					
 				</TabList>
 				
 				<TabPanel>
@@ -62,7 +64,9 @@ class App extends React.Component {
 	  			<TabPanel>
 	  				<WhereAmIComponent/>
 	    		</TabPanel> 	
-	    			
+	  			<TabPanel>
+	  				<WhatIsMyIpInfoComponent/>
+	    		</TabPanel> 	    			
 	    	</Tabs>
     	</div>
     	)

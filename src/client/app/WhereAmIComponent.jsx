@@ -35,8 +35,7 @@ export default class WhereAmIComponent extends React.Component {
     super(props);
 
     this.state = {
-    	location: '',
-    	locations: [], 
+    	location: '', 
     	center: [38.9072, -77.0369],
     	map: null
     	};
