@@ -1,8 +1,8 @@
 /* eslint max-len: 0 */
 import React from 'react';
 
-const K_WIDTH = 10;
-const K_HEIGHT = 10;
+const K_WIDTH = 0;
+const K_HEIGHT = 0;
 
 const Style = {
   // initially any map object has left top corner at lat lng coordinates

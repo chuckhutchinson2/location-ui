@@ -1,6 +1,14 @@
 import React from 'react';
 import WhatIsMyIpApi from './WhatIsMyIpApi.jsx';
 
+import styler from 'react-styling'
+
+const style = styler
+`
+	span:
+		padding: 15px
+`
+
 export default class MyIPComponent extends React.Component {
 
   constructor(props) {
@@ -24,7 +32,7 @@ export default class MyIPComponent extends React.Component {
   }
 
   render() {
-    return (<span>{this.state.ip}</span>);
+    return (<span style={style.span}>{this.state.ip}</span>);
   }
 
 }

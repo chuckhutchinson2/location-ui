@@ -14,10 +14,11 @@ const style = styler
 	
 	divLeft:
 		float: left
-		width: 400px
+		width: 33%
 	
 	divRight:
-		float: right		
+		float: left
+		width: 66%		
 `
 export default class LocationComponent extends React.Component {
 
@@ -87,9 +88,9 @@ export default class LocationComponent extends React.Component {
     };
     
    var mapStyle = {
-   		padding: '10px',
-  		width: '400px',
-  		height: '400px',
+   		paddingTop: '75px',
+  		width: '99%',
+  		height: '600px',
   		overflow: 'scroll'
     };
 

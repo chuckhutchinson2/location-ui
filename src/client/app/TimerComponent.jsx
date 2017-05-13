@@ -1,5 +1,11 @@
 import React from 'react';
+import styler from 'react-styling'
 
+const style = styler
+`
+	span:
+		padding: 15px
+`
 export default class TimerComponent extends React.Component {
 
   constructor(props) {
@@ -25,7 +31,7 @@ export default class TimerComponent extends React.Component {
   }
 
   render() {
-    return (<span>{this.state.date.toLocaleTimeString()}</span>);
+    return (<span style={style.span}>{this.state.date.toLocaleTimeString()}</span>);
   }
 
 }

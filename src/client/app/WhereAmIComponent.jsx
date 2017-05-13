@@ -7,7 +7,7 @@ import styler from 'react-styling'
 const style = styler
 `
 	table:
-		padding: 18px
+		padding: 15px
 		margin: 20px
 		border: 1px solid black
 		
@@ -22,9 +22,11 @@ const style = styler
 	
 	divLeft:
 		float: left
+		width: 25%
 	
 	divRight:
-		float: right		
+		float: left
+		width: 75%		
 `
 
 export default class WhereAmIComponent extends React.Component {
@@ -72,10 +74,10 @@ export default class WhereAmIComponent extends React.Component {
 
   render() {
   	var mapStyle = {
-   		padding: '10px',
-  		width: '400px',
+   		padding: '15px',
+  		width: '100%',
   		height: '400px',
-  		overflow: 'scroll'
+  		overflow: 'hidden'
     };
     
     return (
