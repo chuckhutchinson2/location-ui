@@ -22,11 +22,11 @@ const style = styler
 	
 	divLeft:
 		float: left
-		width: 25%
+		width: 33%
 	
 	divRight:
 		float: left
-		width: 75%		
+		width: 66%		
 `
 
 export default class WhatIsMyIpInfoComponent extends React.Component {
@@ -48,8 +48,6 @@ export default class WhatIsMyIpInfoComponent extends React.Component {
   }
   
   getIpInfo(ipInfo) {
-  
-  	this.setState({ ipInfo: ipInfo});
   	
   	var location = ipInfo.loc.split(",");
 
@@ -61,12 +59,12 @@ export default class WhatIsMyIpInfoComponent extends React.Component {
   	});
   	
   	this.setState({
-  			location: location,
+  			ipInfo: ipInfo,
   			center: [location[0], -1 * location[1]]
   			});
   			
-  	this.state.map.center([location[0],  location[1]]);
-   	// alert(JSON.stringify(ipInfo));
+  	this.state.map.center([Number(location[0]),  Number(location[1])]);
+   	//alert(JSON.stringify(location));
   }
   
   componentDidMount() {
