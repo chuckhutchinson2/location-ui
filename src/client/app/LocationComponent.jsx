@@ -10,7 +10,7 @@ import styler from 'react-styling'
 const style = styler
 `
 	divContainer:
-		margin: 5px
+		margin: 10px
 		padding-bottom: 15px
 	
 	divLeft:
@@ -20,6 +20,7 @@ const style = styler
 	divRight:
 		float: left
 		width: 66%		
+
 `
 export default class LocationComponent extends React.Component {
 
@@ -145,15 +146,21 @@ export default class LocationComponent extends React.Component {
 			
 			<div style={style.divLeft}>
 
-			 	<label>
-			 		Select State:
-					<Select
-					  name="form-field-name"
-					  value={this.state.enteredState}
-					  options={this.state.states}
-					  onChange={this.selectedState}
-					/>
-				</label>
+			 	<div style={style.divContainer}>
+			 	
+			 		<div style={style.divLeft}>
+			 			Select State:
+			 		</div>
+			 		
+			 		<div style={style.divRight}>
+						<Select
+						  name="form-field-name"
+						  value={this.state.enteredState}
+						  options={this.state.states}
+						  onChange={this.selectedState}
+						/>
+			 		</div>
+				</div>
 
 				<BootstrapTable
 					data={this.state.locations} 
@@ -176,7 +183,7 @@ export default class LocationComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
-					zoom={9}
+					zoom={11}
 					center={this.state.center}/>
 			</div>
 		</div>
