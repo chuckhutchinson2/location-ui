@@ -34,12 +34,17 @@ export default class LocationMapComponent extends Component {
 	    };
     	
     this.toggleLocation = this.toggleLocation.bind(this);
+    this.center = this.center.bind(this);
   }
   
   clear() {
   	this.setState({ markers: []});
   }
   
+  center(c) {
+  	this.setState({center: c});
+  }
+ 
   toggleLocation(location) {
   
   	if (location != null) {

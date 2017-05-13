@@ -49,16 +49,22 @@ export default class WhereAmIComponent extends React.Component {
   }
   
   getLocation(location) {
-  	this.setState({
-  			location: location,
-  			center: [location.latitude, location.longitude]
-  			});
+
   	this.state.map.toggleLocation ({
   		latitude: location.latitude, 
   		longitude: -1 * location.longitude,
   		city: location.city,
   		state: location.region_code
   	});
+  	
+  	this.setState({
+  			location: location,
+  			center: [location.latitude, -1 * location.longitude]
+  			});
+  			
+  	this.state.map.center([location.latitude,  location.longitude]);
+  			
+//  	alert(JSON.stringify(this.state.center));
   }
   
   componentDidMount() {
@@ -120,7 +126,7 @@ export default class WhereAmIComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
-					zoom={8}
+					zoom={10}
 					center={this.state.center}/>			
 			</div>
 		</div>

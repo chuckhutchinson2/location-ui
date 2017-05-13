@@ -50,7 +50,7 @@ export default class LocationComponent extends React.Component {
   	  .then(response => this.setState({locations: response})) 
   	  .catch(err => alert('err ' + err.toString()));   
   }
-
+  
   handleChange(event) {
     this.setState({enteredState: event.target.value});
   }
@@ -132,7 +132,7 @@ export default class LocationComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
-					zoom={8}
+					zoom={12}
 					center={this.state.center}/>
 			</div>
 		</div>
