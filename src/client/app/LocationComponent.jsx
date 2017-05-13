@@ -1,6 +1,7 @@
 /* eslint max-len: 0 */
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import Select from 'react-select';
 
 import LocationApi from './LocationApi.jsx';
 import LocationMapComponent from './LocationMapComponent.jsx';
@@ -27,6 +28,7 @@ export default class LocationComponent extends React.Component {
   
     this.state = {
     	locations: [], 
+    	states: [],
     	enteredState: props.enteredState,
     	center: [38.9072, -77.0369],
     	map: null
@@ -36,23 +38,54 @@ export default class LocationComponent extends React.Component {
       defaultSortName: 'city',  // default sort column name
       defaultSortOrder: 'asc'  // default sort order
     };
-    
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.onMapLoad = this.onMapLoad.bind(this);
     this.stateChanged = this.stateChanged.bind(this);
+    this.statesLoaded = this.statesLoaded.bind(this);
     this.handleRowSelect = this.handleRowSelect.bind(this);
+    this.selectedState = this.selectedState.bind(this);
   }
+  
+  
+  statesLoaded(response) {
+	//alert(JSON.stringify(response));
+	
+	var stateList = [];
+	
+	response.forEach(
+		function(state, index) {
+    		//alert(JSON.stringify(state));
+    		
+    		stateList.push ({ 
+    							value: state,
+    							label: state 
+    						});
+	});
+	
+	//alert(JSON.stringify(stateList));
+  	this.setState({ states: stateList});
+  }
+  
   
   componentDidMount() {
    	 this.api = new LocationApi();
+   	 this.api.getStates()
+   	 	.then(response => this.statesLoaded(response))
+   	 	.catch(err => alert('err ' + err.toString()));   
+   	 	
   	 this.api.getCities(this.state.enteredState)
   	  .then(response => this.setState({locations: response})) 
   	  .catch(err => alert('err ' + err.toString()));   
   }
   
-  handleChange(event) {
-    this.setState({enteredState: event.target.value});
+  
+  selectedState(val) {
+  	this.setState({enteredState: val.value});
+   
+   	this.api = new LocationApi(); 	
+  	this.api.getCities(val.value)
+  	  .then(response => this.setState({locations: response})) 
+  	  .catch(err => alert('err ' + err.toString()));   	
   }
   
   stateChanged(response) {
@@ -62,21 +95,15 @@ export default class LocationComponent extends React.Component {
   }
   
   
-  handleSubmit(event) {
-     this.api = new LocationApi();
-  	 this.api.getCities(this.state.enteredState)
-  	  .then(response => this.stateChanged(response)) 
-  	  .catch(err => alert('err ' + err.toString()));   
-  	  
-    event.preventDefault();
-  }
-  
   handleRowSelect(row, isSelected, e) {
   	this.state.map.toggleLocation(row);
   }
   
   onMapLoad(map) {
     this.setState({map: map});
+  }
+  
+  onSelectChange(o) {
   }
   
   render() {
@@ -104,13 +131,18 @@ export default class LocationComponent extends React.Component {
 		<div style={style.divContainer}>
 			
 			<div style={style.divLeft}>
-				 <form onSubmit={this.handleSubmit} style={formStyle}>
-		        	<label>
-		          		State:
-		          		<input type="text" value={this.state.enteredState} onChange={this.handleChange} />
-		        	</label>
-		        	<input type="submit" value="Submit" />
-		      	</form>
+			
+
+				 	<label>
+				 		Select State:
+						<Select
+						  name="form-field-name"
+						  value={this.state.enteredState}
+						  options={this.state.states}
+						  onChange={this.selectedState}
+						/>
+					</label>
+
 				<BootstrapTable
 					data={this.state.locations} 
 					options={ { noDataText: 'No locations available' } } 
