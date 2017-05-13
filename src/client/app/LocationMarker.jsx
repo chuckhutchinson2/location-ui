@@ -12,7 +12,7 @@ const Style = {
   height: K_HEIGHT,
   left: -K_WIDTH / 2,
   top: -K_HEIGHT / 2,
-  backgroundImage: 'url(app/pin.png)',
+  backgroundImage: 'url(images/pin.png)',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   backgroundColor: 'transparent',
