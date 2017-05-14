@@ -11,6 +11,11 @@ export default class LocationApi {
 	  return this.api.GET('/cities/' + state)
 	  .then(response => response);
   }
+  
+  getCoordinates(state) {
+	  return this.api.GET('/state/state/' + state)
+	  .then(response => response);
+  }
 
   getStates() {
 	  return this.api.GET('/states')

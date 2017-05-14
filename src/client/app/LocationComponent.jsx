@@ -68,8 +68,23 @@ export default class LocationComponent extends React.Component {
   	this.setState({ states: stateList});
   }
   
+  processCoordinates(response) {
+  		// alert(JSON.stringify(response));
+  		
+  		var state = response[0];
+  		
+  		if (state && state.coordinates) {
+	  		this.state.map.draw(state.coordinates);
+	  	}	
+  }
+  
   processStateSelected(response) {
   
+  
+    this.api.getCoordinates(this.state.enteredState)
+  	  .then(response => this.processCoordinates(response)) 
+  	  .catch(err => alert('err ' + err.toString()));   
+  	  
   	var location = {
   					latitude: Number(response[0].latitude),
   					longitude: Number(response[0].longitude)

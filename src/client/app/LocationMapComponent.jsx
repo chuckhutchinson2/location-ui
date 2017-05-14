@@ -16,7 +16,8 @@ function createMapOptions(maps) {
       style: maps.ZoomControlStyle.SMALL
     },
     mapTypeControlOptions: {
-      position: maps.ControlPosition.TOP_RIGHT
+      position: maps.ControlPosition.TOP_RIGHT,
+      mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain']
     },
     mapTypeControl: true
   };
@@ -30,11 +31,24 @@ export default class LocationMapComponent extends Component {
     this.state = {
     	center: props.center,
     	zoom: props.zoom,
+    	map: null,
     	markers: []
 	    };
     	
+    this.onMapLoad = this.onMapLoad.bind(this);
+    this.onMapClick = this.onMapClick.bind(this);
     this.toggleLocation = this.toggleLocation.bind(this);
     this.center = this.center.bind(this);
+    this.draw = this.draw.bind(this);
+    this.getGoogleMap = this.getGoogleMap.bind(this);
+  }
+  
+  getGoogleMap() {
+  	return this.state.map.map_;
+  }
+ 
+  onMapLoad(map) {
+    this.setState({map: map});
   }
   
   clear() {
@@ -53,7 +67,7 @@ export default class LocationMapComponent extends Component {
 					lat: location.latitude, 
 					lng: -1 * location.longitude,
 					title: location.city + ", " + location.state
-					}
+					};
 				
 				
 		var markers = this.state.markers;
@@ -81,8 +95,33 @@ export default class LocationMapComponent extends Component {
 	}
   }
   
-  onMapClick(event) {
+  
+  draw(coordinates) {
+  	if (coordinates && google) {
+        // Construct the polygon.
+        var polygon = new google.maps.Polygon({
+          paths: coordinates,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
 
+    	polygon.setMap(this.getGoogleMap());
+    }
+  }
+  
+  onMapClick(event) {
+        // Define the LatLng coordinates for the polygon's path.
+        var bermudaTriangleCoords = [
+          {lat: 25.774, lng: -80.190},
+          {lat: 18.466, lng: -66.118},
+          {lat: 32.321, lng: -64.757},
+          {lat: 25.774, lng: -80.190}
+        ];
+        
+   //     this.draw(bermudaTriangleCoords);
   }
 
   render() {
@@ -109,6 +148,7 @@ export default class LocationMapComponent extends Component {
 		<div style={this.props.style}>
 	       <GoogleMap
 		       	onClick={this.onMapClick}
+		       	ref={this.onMapLoad}
 		        bootstrapURLKeys={{
 				    key: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
 				    language: 'en'
