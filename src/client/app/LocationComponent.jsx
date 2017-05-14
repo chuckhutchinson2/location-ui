@@ -74,7 +74,7 @@ export default class LocationComponent extends React.Component {
   		var state = response[0];
   		
   		if (state && state.coordinates) {
-	  		this.state.map.draw(state.coordinates);
+	  		this.state.map.draw(state.coordinates, state.color);
 	  	}	
   }
   

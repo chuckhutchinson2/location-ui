@@ -96,15 +96,15 @@ export default class LocationMapComponent extends Component {
   }
   
   
-  draw(coordinates) {
+  draw(coordinates, regionColor) {
   	if (coordinates && google) {
         // Construct the polygon.
         var polygon = new google.maps.Polygon({
           paths: coordinates,
-          strokeColor: '#FF0000',
+          strokeColor: regionColor,
           strokeOpacity: 0.8,
           strokeWeight: 2,
-          fillColor: '#FF0000',
+          fillColor: regionColor,
           fillOpacity: 0.35
         });
 
