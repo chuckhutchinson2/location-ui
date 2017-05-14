@@ -121,7 +121,7 @@ export default class LocationMapComponent extends Component {
           {lat: 25.774, lng: -80.190}
         ];
         
-   //     this.draw(bermudaTriangleCoords);
+   //  this.draw(bermudaTriangleCoords);
   }
 
   render() {
