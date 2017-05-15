@@ -186,10 +186,10 @@ export default class LocationComponent extends React.Component {
 					exportCSV
 					selectRow={ selectRow }
 					>
-					<TableHeaderColumn dataField='city' dataSort filter={ { type: 'TextFilter' } }>City</TableHeaderColumn>
 					<TableHeaderColumn dataField='county' dataSort filter={ { type: 'TextFilter' } }>County</TableHeaderColumn>
+					<TableHeaderColumn dataField='city' dataSort filter={ { type: 'TextFilter' } }>City</TableHeaderColumn>
 					<TableHeaderColumn dataField='zip' dataSort filter={ { type: 'TextFilter' } }>Zip Code</TableHeaderColumn>
-					<TableHeaderColumn dataField='weatherCode' dataSort filter={ { type: 'TextFilter' } }>Weather Code</TableHeaderColumn>
+					<TableHeaderColumn dataField='weatherCode' hidden dataSort filter={ { type: 'TextFilter' } }>Weather Code</TableHeaderColumn>
 					<TableHeaderColumn isKey dataField='latitude' hidden export>Latitude</TableHeaderColumn>
 					<TableHeaderColumn dataField='longitude' hidden export>Longitude</TableHeaderColumn>	
 				</BootstrapTable>
@@ -198,7 +198,7 @@ export default class LocationComponent extends React.Component {
 				<LocationMapComponent 
 					style={mapStyle}
 					ref={this.onMapLoad} 
-					zoom={11}
+					zoom={7}
 					center={this.state.center}/>
 			</div>
 		</div>
