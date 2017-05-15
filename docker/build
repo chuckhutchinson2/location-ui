@@ -1,8 +1,11 @@
 # build the docker image
 mkdir -p dist
 mkdir -p dist/public
+mkdir -p dist/images
 cp ../src/client/index.html dist/index.html
+cp ../src/client/*.css dist/
 cp ../src/client/public/bundle.js dist/public/bundle.js
+cp ../src/client/images/* dist/images/
 
 docker build -t location-ui .
-# rm -fr dist
+rm -fr dist

@@ -4,7 +4,7 @@ import RestClient from 'react-native-rest-client';
 export default class LocationApi {
 	
   constructor() {
-  	this.api = new RestClient('http://localhost:8080');
+  	this.api = new RestClient('http://location-dev-alb-ecs-130671189.us-east-1.elb.amazonaws.com');
   }
   
   getCities(state) {
