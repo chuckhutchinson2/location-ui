@@ -13,7 +13,7 @@ export default class LocationApi {
   }
   
   getCoordinates(state) {
-	  return this.api.GET('/state/state/' + state)
+	  return this.api.GET('/place/' + state)
 	  .then(response => response);
   }
 
